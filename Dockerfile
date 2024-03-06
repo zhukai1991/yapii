@@ -4,4 +4,5 @@ RUN apk add binutils-gold g++ gcc gnupg libgcc linux-headers make python2
 
 WORKDIR /app
 COPY . /app
-RUN npm install --verbose
+RUN npm install --production
+CMD ['node', 'server/app.js']
