@@ -6,5 +6,6 @@
     "servername": "127.0.0.1",
     "DATABASE": "yapi",
     "port": 27017
-  }
+  },
+  "plugins": []
 }
