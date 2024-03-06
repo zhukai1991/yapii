@@ -18,6 +18,7 @@ module.exports = {
         "import"
     ],
     rules: {
+        "no-unused-vars": ["off"],
         "indent": ["off", 2],
         "react/display-name": ["off"],
         "react/jsx-indent": ["error", 2],
