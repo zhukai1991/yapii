@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import { Home, Group, Project, Follows, AddProject, Login } from './containers/index';
+import { Home, Group, Project, Follows, AddProject, Login, Share } from './containers/index';
 import { Alert } from 'antd';
 import User from './containers/User/User.js';
 import Header from './components/Header/Header';
@@ -115,7 +115,7 @@ export default class App extends Component {
               {this.props.curUserRole === 'admin' && <Notify />}
               {alertContent()}
               {this.props.loginState !== 1 ? <Header /> : null}
-              <div className="router-container">
+              {/* <div className="router-container">
                 {Object.keys(AppRoute).map(key => {
                   let item = AppRoute[key];
                   return key === 'login' ? (
@@ -130,9 +130,10 @@ export default class App extends Component {
                     />
                   );
                 })}
-              </div>
-              {/* <div className="router-container">
+              </div> */}
+              <div className="router-container">
                 <Route exact path="/" component={Home} />
+                <Route path="/share/:id" component={Share} />
                 <Route path="/group" component={requireAuthentication(Group)} />
                 <Route path="/project/:id" component={requireAuthentication(Project)} />
                 <Route path="/user" component={requireAuthentication(User)} />
@@ -140,7 +141,7 @@ export default class App extends Component {
                 <Route path="/add-project" component={requireAuthentication(AddProject)} />
                 <Route path="/login" component={Login} />
                 {/* <Route path="/statistic" component={statisticsPage} /> */}
-              {/* </div> */}
+              </div>
             </div>
             <Footer />
           </div>
