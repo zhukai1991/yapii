@@ -343,7 +343,7 @@ class userController extends baseController {
     try {
       let user = await userInst.save(data);
 
-      this.setLoginCookie(user._id, user.passsalt);
+      ctx.request.body?.action !== 'append' && this.setLoginCookie(user._id, user.passsalt);
       await this.handlePrivateGroup(user._id, user.username, user.email);
       ctx.body = yapi.commons.resReturn({
         uid: user._id,
