@@ -153,10 +153,9 @@ export function loginLdapActions(data) {
 }
 
 export function regActions(data) {
-  const { email, password, userName } = data;
+  const { userName } = data;
   const param = {
-    email,
-    password,
+    ...data,
     username: userName
   };
   return {
