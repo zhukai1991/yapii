@@ -1,7 +1,7 @@
 {
-  "name": "yapi-vendor",
-  "version": "1.11.0",
-  "description": "YAPI",
+  "name": "yapii",
+  "version": "2.0.0",
+  "description": "yapii",
   "main": "server/app.js",
   "scripts": {
     "dev-copy-icon": "cp -r static/iconfont ./",
@@ -10,25 +10,21 @@
     "dev-client": "npm run dev-copy-icon && ykit s -p 4000",
     "dev": "npm run dev-server & npm run dev-client",
     "start": "nodemon server/app.js",
-    "test": "ava",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "build-client": "NODE_ENV=production ykit pack -m",
-    "npm-publish": "node ./npm-publish.js",
-    "docs": "ydoc build"
+    "build-client": "NODE_ENV=production ykit pack -m"
   },
   "scripts-info": {
     "start": "运行生产环境服务器",
     "install-server": "初始化数据库数据，用于安装",
     "dev": "运行开发服务器",
     "dev-server": "运行后端开发服务器",
-    "dev-client": "运行前端开发服务器",
-    "test": "执行测试"
+    "dev-client": "运行前端开发服务器"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:YMFE/yapi.git"
+    "url": "git@github.com:gozeon/yapii.git"
   },
-  "author": "",
+  "author": "gozeon",
   "license": "Apache-2.0",
   "dependencies": {
     "ajv": "^5.5.1",
@@ -72,7 +68,6 @@
     "mongoose": "5.7.5",
     "mongoose-auto-increment": "5.0.1",
     "moox": "^1.0.2",
-    "node-sass": "^5.0.0",
     "node-schedule": "^1.3.2",
     "nodemailer": "4.0.1",
     "os": "0.1.1",
@@ -92,7 +87,6 @@
     "antd": "3.2.2",
     "anujs": "^1.2.6",
     "assets-webpack-plugin": "^3.5.1",
-    "ava": "^0.22.0",
     "babel": "^6.5.2",
     "babel-core": "^6.8.0",
     "babel-eslint": "^7.2.3",
@@ -114,16 +108,13 @@
     "copy-webpack-plugin": "^4.0.1",
     "core-decorators": "^0.17.0",
     "css-loader": "^0.28.4",
-    "eslint": "^3.19.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "2.0.0",
     "happypack": "^4.0.0-beta.5",
     "json-schema-editor-visual": "^1.0.23",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "markdown-it-include": "^1.0.0",
+    "node-sass": "^5.0.0",
     "nodemon": "^1.11.0",
     "prop-types": "^15.5.10",
     "rc-queue-anim": "^1.2.0",
@@ -183,14 +174,5 @@
         }
       ]
     ]
-  },
-  "ava": {
-    "files": [
-      "test/**/*.js"
-    ],
-    "require": [
-      "babel-register"
-    ],
-    "babel": "inherit"
   }
 }
