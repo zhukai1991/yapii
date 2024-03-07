@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import { Table, Popconfirm, message, Input } from 'antd';
 import axios from 'axios';
 
+import Add from './Add.js'
+
 const Search = Input.Search;
 const limit = 20;
 @connect(
@@ -216,6 +218,7 @@ class List extends Component {
             placeholder="请输入用户名"
           />
         </div>
+        <Add onSuccess={() => this.getUserList()}/>
         <Table
           bordered={true}
           rowKey={record => record._id}
