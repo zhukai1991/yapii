@@ -458,7 +458,10 @@ class interfaceController extends baseController {
       }
       let userinfo = await this.userModel.findById(result.uid);
       let project = await this.projectModel.getBaseInfo(result.project_id);
-      if (project.project_type === 'private') {
+      let isShare = await this.checkShare(res=>{
+        return res['project_id'] == result.project_id && res['interface_id'] == result._id
+      })
+      if (project.project_type === 'private' && !isShare) {
         if ((await this.checkAuth(project._id, 'project', 'view')) !== true) {
           return (ctx.body = yapi.commons.resReturn(null, 406, '没有权限'));
         }

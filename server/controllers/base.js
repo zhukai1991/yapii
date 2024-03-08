@@ -4,6 +4,7 @@ const userModel = require('../models/user.js');
 const interfaceModel = require('../models/interface.js');
 const groupModel = require('../models/group.js');
 const tokenModel = require('../models/token.js');
+const shareModel = require('../models/share.js');
 const _ = require('underscore');
 const jwt = require('jsonwebtoken');
 const {parseToken} = require('../utils/token')
@@ -16,6 +17,15 @@ class baseController {
       admin: 'Admin',
       member: '网站会员'
     };
+
+    this.shareModel = yapi.getInst(shareModel);
+
+    this.shareRouter = [
+      '/api/group/share/get',
+      '/api/project/share/get',
+      '/api/interface/share/get',
+      '/api/share/get',
+    ]
   }
 
   async init(ctx) {
@@ -29,7 +39,8 @@ class baseController {
       '/api/user/status',
       '/api/user/logout',
       '/api/user/avatar',
-      '/api/user/login_by_ldap'
+      '/api/user/login_by_ldap',
+      ...this.shareRouter
     ];
     if (ignoreRouter.indexOf(ctx.path) > -1) {
       this.$auth = true;
@@ -57,7 +68,6 @@ class baseController {
 
     let params = Object.assign({}, ctx.query, ctx.request.body);
     let token = params.token;
-
     // 如果前缀是 /api/open，执行 parse token 逻辑
     if (token && typeof token === 'string' && (openApiRouter.indexOf(ctx.path) > -1 || ctx.path.indexOf('/api/open/') === 0 )) {
 
@@ -203,7 +213,7 @@ class baseController {
   }
 
   getRole() {
-    return this.$user.role;
+    return this.$user?.role;
   }
 
   getUsername() {
@@ -288,6 +298,26 @@ class baseController {
       return false;
     }
   }
+
+  /**
+   * 校验分享
+   * @returns bool
+   */
+  async checkShare(cb) {
+    const {shareId} = this.ctx.query
+    if(!shareId) {
+      return false
+    }
+    const s = await this.shareModel.get(shareId)
+    if (!s) {
+      return false
+    }
+    if(cb) {
+      return cb(s.toObject())
+    }
+    return true
+  }
+
   /**
    * 身份验证
    * @param {*} id type对应的id

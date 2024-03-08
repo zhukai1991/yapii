@@ -524,7 +524,9 @@ class projectController extends baseController {
     if (!result) {
       return (ctx.body = yapi.commons.resReturn(null, 400, '不存在的项目'));
     }
-    if (result.project_type === 'private') {
+
+    let isShare = await this.checkShare(res => res['project_id'] == projectId)
+    if (result.project_type === 'private' && !isShare) {
       if ((await this.checkAuth(result._id, 'project', 'view')) !== true) {
         return (ctx.body = yapi.commons.resReturn(null, 406, '没有权限'));
       }
