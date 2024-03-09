@@ -58,7 +58,7 @@ class Share extends React.Component {
         { name: "分享" },
         {
           name: this.props.curData.title,
-          href: `project/${this.props.curData.project_id}/interface/api/${this.props.curData._id}`,
+          href: `/project/${data.project_id}/interface/api/${data.interface_id}`,
         },
       ]);
 
