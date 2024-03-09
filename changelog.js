@@ -1,6 +1,6 @@
 const config = {
     gitRawCommitsOpts: {
-        from: 'd413a11ab1898e66e5fed88ab6b429edbd2a54c3',
+        from: '0ea7824ac384deacb2d13f066481eedd82d1be74',
 
     },
   };

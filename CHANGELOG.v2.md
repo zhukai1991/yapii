@@ -1,3 +1,13 @@
+# 2.1.0 (2024-03-09)
+
+
+### Features
+
+* log管理方式 ([df1eaf7](https://github.com/gozeon/yapii/commit/df1eaf77cf061b8b19f833a34d6dab2d52bb284a))
+* 修改changelog方式 ([672e832](https://github.com/gozeon/yapii/commit/672e8320c5e3e4c67d566395a7bc50ea775b16c8))
+
+
+
 # 2.0.0 (2024-03-09)
 
 
