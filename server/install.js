@@ -134,6 +134,16 @@ function setupSql() {
         project_id: 1
       });
 
+      let shareCol = mongoose.connection.db.collection('share');
+      shareCol.createIndex(
+        {
+          interface_id: 1
+        },
+        {
+          unique: true
+        }
+      );
+
       result.then(
         function() {
           fs.ensureFileSync(yapi.path.join(yapi.WEBROOT_RUNTIME, 'init.lock'));
