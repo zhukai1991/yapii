@@ -70,6 +70,10 @@ class ErrMsg extends Component {
           title = '暂无数据';
           desc = '先去别处逛逛吧';
           break;
+        case 'noShare':
+            title = '该分享已被取消';
+            desc = '先去别处逛逛吧';
+            break;
         case 'noChange':
           title = '没有改动';
           desc = '该操作未改动 Api 数据';

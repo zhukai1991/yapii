@@ -20,6 +20,12 @@ class shareModel extends baseModel {
         });
     }
 
+    get_by_iid(interface_id) {
+        return this.model.findOne({
+            interface_id
+        });
+    }
+
     del(id) {
         return this.model.remove({
             _id: id

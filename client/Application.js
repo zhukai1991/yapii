@@ -114,7 +114,8 @@ export default class App extends Component {
             <div className="router-main">
               {this.props.curUserRole === 'admin' && <Notify />}
               {alertContent()}
-              {this.props.loginState !== 1 ? <Header /> : null}
+              {/* {this.props.loginState !== 1 ? <Header /> : null} */}
+              <Header />
               {/* <div className="router-container">
                 {Object.keys(AppRoute).map(key => {
                   let item = AppRoute[key];

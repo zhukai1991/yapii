@@ -612,6 +612,11 @@ let routerConfig = {
       method: 'get'
     },
     {
+      action: 'get_by_iid',
+      path: 'get_by_iid',
+      method: 'get'
+    },
+    {
       action: 'del',
       path: 'del',
       method: 'get'

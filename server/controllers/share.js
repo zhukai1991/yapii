@@ -31,6 +31,16 @@ class shareController extends baseController {
         }
     }
 
+    async get_by_iid(ctx) {
+        const { interface_id } = ctx.params
+        try {
+            let result = await this.Model.get_by_iid(interface_id);
+            ctx.body = yapi.commons.resReturn(result.toObject());
+        } catch (e) {
+            ctx.body = yapi.commons.resReturn(null, 401, e.message);
+        }
+    }
+
     async del(ctx) {
         const { id } = ctx.params
         try {

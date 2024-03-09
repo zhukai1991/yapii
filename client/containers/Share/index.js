@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 import { Tabs, Layout, Spin } from "antd";
 const { Content, Sider } = Layout;
 
+import ErrMsg from "../../components/ErrMsg/ErrMsg.js";
 import Header from "../../components/Header/Header.js";
 import View from "../Project/Interface/InterfaceList/View.js";
 import { setBreadcrumb } from "../../reducer/modules/user";
-import { getProject } from "../../reducer/modules/project.js";
-import { fetchInterfaceData } from "../../reducer/modules/interface.js";
-import { setCurrGroup } from "../../reducer/modules/group.js";
+import { getProjectWithShare } from "../../reducer/modules/project.js";
+import { fetchInterfaceDataWithShare } from "../../reducer/modules/interface.js";
+import { setCurrGroupWithShare } from "../../reducer/modules/group.js";
+
+import axios from "axios";
 
 @connect(
   (state) => {
@@ -21,9 +24,9 @@ import { setCurrGroup } from "../../reducer/modules/group.js";
   },
   {
     setBreadcrumb,
-    fetchInterfaceData,
-    getProject,
-    setCurrGroup,
+    fetchInterfaceData: fetchInterfaceDataWithShare,
+    getProject: getProjectWithShare,
+    setCurrGroup: setCurrGroupWithShare,
   }
 )
 class Share extends React.Component {
@@ -32,28 +35,39 @@ class Share extends React.Component {
 
     this.state = {
       loading: false,
+      no_share: false,
     };
   }
 
   async componentWillMount() {
     this.setState({ loading: true });
-    await this.props.fetchInterfaceData(this.props.match.params.id);
+    const shareId = this.props.match.params.id
+    const res = await axios.get("/api/share/get", { params: { id: shareId } })
 
-    await this.props.getProject(this.props.curData.project_id);
+    const { errcode, errmsg, data } = res.data
+    if (errcode == 0) {
 
-    await this.props.setCurrGroup({ _id: this.props.curProject.group_id });
+      await this.props.fetchInterfaceData(data.interface_id, shareId);
 
-    this.props.setBreadcrumb([
-      { name: "分享" },
-      {
-        name: this.props.curData.title,
-        href: `project/${this.props.curData.project_id}/interface/api/${this.props.curData._id}`,
-      },
-    ]);
+      await this.props.getProject(data.project_id, shareId);
 
-    console.log(this.props.match.params.id);
+      await this.props.setCurrGroup({ _id: data.group_id, shareId });
 
-    this.setState({ loading: false });
+
+      this.props.setBreadcrumb([
+        { name: "分享" },
+        {
+          name: this.props.curData.title,
+          href: `project/${this.props.curData.project_id}/interface/api/${this.props.curData._id}`,
+        },
+      ]);
+
+      this.setState({ no_share: false})
+    } else {
+      this.setState({ no_share: true})
+    }
+
+    this.setState({ loading: false})
   }
 
   render() {
@@ -69,8 +83,7 @@ class Share extends React.Component {
         >
           <div className="right-content">
             <Spin spinning={this.state.loading}>
-              {this.props.loginState !== 1 ? null : <Header />}
-              {this.state.loading ? "" : <View></View>}
+              {this.state.loading ? "" : (this.state.no_share ? <ErrMsg type="noShare" /> : <View></View>)}
             </Spin>
           </div>
         </Content>

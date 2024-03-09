@@ -302,6 +302,15 @@ export async function getProject(id) {
   };
 }
 
+
+export async function getProjectWithShare(id, shareId) {
+  let result = await axios.get('/api/project/share/get?id=' + id + '&shareId=' + shareId);
+  return {
+    type: GET_CURR_PROJECT,
+    payload: result
+  };
+}
+
 export async function getToken(project_id) {
   return {
     type: GET_TOKEN,

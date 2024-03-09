@@ -126,6 +126,14 @@ export async function fetchInterfaceData(interfaceId) {
   };
 }
 
+export async function fetchInterfaceDataWithShare(interfaceId, shareId) {
+  let result = await axios.get('/api/interface/share/get?id=' + interfaceId + '&shareId=' + shareId);
+  return {
+    type: FETCH_INTERFACE_DATA,
+    payload: result
+  };
+}
+
 export async function fetchInterfaceListMenu(projectId) {
   let result = await axios.get('/api/interface/list_menu?project_id=' + projectId);
   return {

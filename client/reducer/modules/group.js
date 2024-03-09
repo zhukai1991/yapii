@@ -160,3 +160,12 @@ export function setCurrGroup(group) {
     })
   };
 }
+
+export function setCurrGroupWithShare(group) {
+  return {
+    type: SET_CURR_GROUP,
+    payload: axios.get('/api/group/share/get', {
+      params: { id: group._id, shareId: group.shareId }
+    })
+  };
+}
