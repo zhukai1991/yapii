@@ -8,6 +8,7 @@ const shareModel = require('../models/share.js');
 const _ = require('underscore');
 const jwt = require('jsonwebtoken');
 const {parseToken} = require('../utils/token')
+const loGet = require('lodash.get')
 
 class baseController {
   constructor(ctx) {
@@ -213,7 +214,7 @@ class baseController {
   }
 
   getRole() {
-    return this.$user?.role;
+    return loGet(this.$user, 'role', void 0);
   }
 
   getUsername() {

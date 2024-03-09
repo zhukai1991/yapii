@@ -10,6 +10,8 @@ const projectModel = require('../models/project.js');
 const avatarModel = require('../models/avatar.js');
 
 const jwt = require('jsonwebtoken');
+const loGet = require('lodash.get')
+
 
 class userController extends baseController {
   constructor(ctx) {
@@ -343,7 +345,7 @@ class userController extends baseController {
     try {
       let user = await userInst.save(data);
 
-      ctx.request.body?.action !== 'append' && this.setLoginCookie(user._id, user.passsalt);
+      loGet(ctx, 'request.body.action', '')!== 'append' && this.setLoginCookie(user._id, user.passsalt);
       await this.handlePrivateGroup(user._id, user.username, user.email);
       ctx.body = yapi.commons.resReturn({
         uid: user._id,
