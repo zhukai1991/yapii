@@ -26,6 +26,8 @@ const app = websockify(new Koa());
 app.proxy = true;
 yapi.app = app;
 
+app.use(require('koa-logger')())
+
 // app.use(bodyParser({multipart: true}));
 app.use(koaBody({strict: false, multipart: true, jsonLimit: '2mb', formLimit: '1mb', textLimit: '1mb' }));
 app.use(mockServer);

@@ -95,24 +95,6 @@ exports.log = (msg, type) => {
   }
 
   f(type + ':', msg);
-
-  let date = new Date();
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-
-  let logfile = path.join(yapi.WEBROOT_LOG, year + '-' + month + '.log');
-
-  if (typeof msg === 'object') {
-    if (msg instanceof Error) msg = msg.message;
-    else msg = JSON.stringify(msg);
-  }
-
-  // let data = (new Date).toLocaleString() + '\t|\t' + type + '\t|\t' + msg + '\n';
-  let data = `[ ${new Date().toLocaleString()} ] [ ${type} ] ${msg}\n`;
-
-  fs.writeFileSync(logfile, data, {
-    flag: 'a'
-  });
 };
 
 exports.fileExist = filePath => {
