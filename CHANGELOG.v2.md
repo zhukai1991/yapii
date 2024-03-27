@@ -1,3 +1,18 @@
+# 2.2.0 (2024-03-27)
+
+
+### Bug Fixes
+
+*  optional chaining ([2a76b12](https://github.com/gozeon/yapii/commit/2a76b12ec56355de1758c4379d62f523e20541c0))
+
+
+### Features
+
+* **接口:** 测试接口 ([664d527](https://github.com/gozeon/yapii/commit/664d52723d471edba13ce41d6c109289786ff09f))
+* **运行:** 优化展示 ([da019da](https://github.com/gozeon/yapii/commit/da019dac68254a1b1e8eb673492b2891172c2c58))
+
+
+
 # 2.1.0 (2024-03-09)
 
 
