@@ -20,7 +20,17 @@ class RunController extends baseController {
             const res = await axios(options)
             ctx.body = _.pick(res, ["data", "status", "statusText", "headers"])
         } catch (e) {
-            ctx.body = _.pick(e.response, ["data", "status", "statusText", "headers"])
+            if(e.response) {
+                ctx.body = _.pick(e.response, ["data", "status", "statusText", "headers"])
+            } else {
+                ctx.body = {
+                    data: e.message,
+                    status: e.errno,
+                    statusText: e.code,
+                    headers: e.config.headers
+                }
+            }
+            
         }
     }
 

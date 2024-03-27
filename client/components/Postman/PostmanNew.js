@@ -349,17 +349,16 @@ axios(options).then(res => pipe(res));
     options.timeout = 800
     try {
       const result = await axios.post("/api/run/add", {options})
-      console.log("🚀 ~ Run ~ reqRealInterface= ~ result:", result)
       
       this.setState({
-        resStatusCode: result.status,
-        resStatusText: result.statusText,
-        test_res_header: result.headers,
-        test_res_body: result.data,
+        resStatusCode: result.data.status,
+        resStatusText: result.data.statusText,
+        test_res_header: result.data.headers,
+        test_res_body: result.data.data,
         loading: false
       });
     } catch(e) {
-      console.log("🚀 ~ Run ~ reqRealInterface= ~ e:", e)
+      alert(e.message)
       this.setState({
         loading: false
       })
