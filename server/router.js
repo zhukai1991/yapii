@@ -6,6 +6,7 @@ const interfaceColController = require('./controllers/interfaceCol.js');
 const testController = require('./controllers/test.js');
 
 const shareController = require('./controllers/share.js')
+const runController = require('./controllers/run.js')
 
 const yapi = require('./yapi.js');
 const projectController = require('./controllers/project.js');
@@ -56,6 +57,10 @@ let INTERFACE_CONFIG = {
   share: {
     prefix: '/share/',
     controller: shareController
+  },
+  run: {
+    prefix: '/run/',
+    controller: runController
   }
 };
 
@@ -620,6 +625,13 @@ let routerConfig = {
       action: 'del',
       path: 'del',
       method: 'get'
+    },
+  ],
+  run: [
+    {
+      action: 'runCode',
+      path: 'add',
+      method: 'post'
     },
   ]
 };

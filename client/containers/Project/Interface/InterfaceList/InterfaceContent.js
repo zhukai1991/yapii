@@ -8,6 +8,7 @@ import { Prompt } from 'react-router';
 import { fetchInterfaceData } from '../../../../reducer/modules/interface.js';
 import { withRouter } from 'react-router-dom';
 import Run from './Run/Run.js';
+import RunNew from './Run/RunNew.js';
 const plugin = require('client/plugin.js');
 
 const TabPane = Tabs.TabPane;
@@ -122,7 +123,11 @@ class Content extends Component {
       },
       run: {
         component: Run,
-        name: '运行'
+        name: '运行(旧版)'
+      },
+      run2: {
+        component: RunNew,
+        name: '运行(新版)'
       }
     };
 
