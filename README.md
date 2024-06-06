@@ -1,6 +1,8 @@
 ## changelog
 
-see `CHANGELOG.v2.md`
+> wiki 有一些截图，方便查看
+
+see `CHANGELOG.v2.md` or [wiki](https://github.com/gozeon/yapii/wiki)
 
 ## 使用
 
