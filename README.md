@@ -21,6 +21,8 @@ npm run install-server
 
 ## develop
 
+[常见问题](https://github.com/gozeon/yapii/wiki/FAQ)
+
 ```bash
 docker build . -t yapii
 docker run --rm -it -p 4000:4000 -v $PWD:/app -w /app yapii /bin/sh
