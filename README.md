@@ -28,6 +28,8 @@ docker build . -t yapii
 docker run --rm -it -p 4000:4000 -v $PWD:/app -w /app yapii /bin/sh
 ```
 
+使用`npm start`启动`node server`，如果前端有改动，使用`npm run build-client`即可
+
 ## note
 
 知道你们忙，所以我来了。
