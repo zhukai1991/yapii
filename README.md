@@ -11,7 +11,8 @@ see `CHANGELOG.v2.md` or [wiki](https://github.com/gozeon/yapii/wiki)
 3. 修改 `config.json` 配置文件
 4. `pm2 start server/app.js --name yapii`
 
-日志管理建议使用 `pm2-logrotate`
+> 这是部署方式，如果你在本地启动，直接运行`npm start` or `node server/app.js`
+> 日志管理建议使用 `pm2-logrotate`
 
 ## 设置系统管理员
 
