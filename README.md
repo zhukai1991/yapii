@@ -7,7 +7,7 @@ see `CHANGELOG.v2.md` or [wiki](https://github.com/gozeon/yapii/wiki)
 ## 使用
 
 1. `git clone https://github.com/gozeon/yapii.git` or 下载项目
-2. `npm install --production`  [报错点这里](https://github.com/gozeon/yapii/wiki/FAQ#npm-install---production-%E6%8A%A5%E9%94%99)
+2. `npm install --production`  [报错点这里](https://github.com/gozeon/yapii/wiki/npm-install-%E2%80%90%E2%80%90production-%E6%8A%A5%E9%94%99)
 3. 修改 `config.json` 配置文件
 4. `pm2 start server/app.js --name yapii`
 
@@ -23,7 +23,7 @@ npm run install-server
 
 ## develop
 
-[常见问题](https://github.com/gozeon/yapii/wiki/FAQ)
+[常见问题](https://github.com/gozeon/yapii/wiki)
 
 ```bash
 docker build . -t yapii
