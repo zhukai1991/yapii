@@ -6,7 +6,9 @@ see `CHANGELOG.v2.md` or [wiki](https://github.com/gozeon/yapii/wiki)
 
 ## 使用
 
-1. `git clone https://github.com/gozeon/yapii.git` or 下载项目
+### 方式一
+
+1. `git clone https://github.com/gozeon/yapii.git --depth 1` or 下载项目
 2. `npm install --production`  [报错点这里](https://github.com/gozeon/yapii/wiki/npm-install-%E2%80%90%E2%80%90production-%E6%8A%A5%E9%94%99)
 3. 修改 `config.json` 配置文件
 4. `pm2 start server/app.js --name yapii`
@@ -15,19 +17,33 @@ see `CHANGELOG.v2.md` or [wiki](https://github.com/gozeon/yapii/wiki)
 
 > 日志管理建议使用 `pm2-logrotate`
 
+### 方式二
+
+1. 修改 `config.json` 配置文件
+2. `docker build . -t yapii`
+3. docker run --rm -it -d -p 4000:4000 yapii
+
+### 方式三（推荐）
+
+1. 修改 `config.json` 配置文件
+2. `docker compose up -d`
+3. 设置系统管理员 `docker compose run --rm yapii node server/install.js`
+
 ## 设置系统管理员
 
 ```bash
 npm run install-server
 ```
 
-## develop
+## 自定义开发
+
+> 主要问题是前端编译
 
 [常见问题](https://github.com/gozeon/yapii/wiki)
 
 ```bash
-docker build . -t yapii
-docker run --rm -it -p 4000:4000 -v $PWD:/app -w /app yapii /bin/sh
+docker build . -t yapii.dev -f Dockerfile.dev
+docker run --rm -it -p 4000:4000 -v $PWD:/app -w /app yapii.dev /bin/sh
 ```
 
 使用`npm start`启动`node server`，如果前端有改动，使用`npm run build-client`即可
