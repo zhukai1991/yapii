@@ -19,11 +19,15 @@ see `CHANGELOG.v2.md` or [wiki](https://github.com/gozeon/yapii/wiki)
 
 ### 方式二
 
+> 适合从旧的`yapi`迁移到
+
 1. 修改 `config.json` 配置文件
 2. `docker build . -t yapii`
 3. docker run --rm -it -d -p 4000:4000 yapii
 
 ### 方式三（推荐）
+
+> 一键部署，需要注意数据库的备份
 
 1. 修改 `config.json` 配置文件
 2. `docker compose up -d`
