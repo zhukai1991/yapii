@@ -49,6 +49,7 @@ npm run install-server
 docker build . -t yapii.dev -f Dockerfile.dev
 docker run --rm -it -p 4000:4000 -v $PWD:/app -w /app yapii.dev /bin/sh
 ```
+> 开发需要安装全部依赖`npm install`，参考: https://github.com/gozeon/yapii/issues/15
 
 使用`npm start`启动`node server`，如果前端有改动，使用`npm run build-client`即可
 
