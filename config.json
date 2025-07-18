@@ -1,11 +1,25 @@
 {
   "port": "3000",
-  "adminAccount": "admin@admin.com",
+  "adminAccount": "admin@qq.com",
+  "versionNotify": true,
   "timeout":120000,
+  "version": "1.3.5",
   "db": {
-    "servername": "yapii_mongo",
+    "servername": "47.96.254.112",
     "DATABASE": "yapi",
-    "port": 27017
+    "port": 27017,
+    "user": "yapi",
+    "pass": "BK6s7ipsRwTp6ALw",
+    "authSource": ""
   },
-  "plugins": []
+  "mail1": {
+    "enable": true,
+    "host": "smtp.163.com",
+    "port": 465,
+    "from": "***@163.com",
+    "auth": {
+      "user": "***@163.com",
+      "pass": "*****"
+    }
+  }
 }

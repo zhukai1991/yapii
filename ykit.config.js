@@ -11,6 +11,7 @@ var assetsPluginInstance = new AssetsPlugin({
 var fs = require('fs');
 var package = require('./package.json');
 var yapi = require('./server/yapi');
+const serve = require('koa-static');
 var isWin = require('os').platform() === 'win32'
 
 var compressPlugin = new CompressionPlugin({
@@ -83,6 +84,7 @@ module.exports = {
       }
     }
   ],
+  type: 'web', // 必须指定项目类型
   devtool: 'cheap-source-map',
   config: function(ykit) {
     return {
@@ -176,12 +178,26 @@ module.exports = {
               '?sourceMap'
           )
         });
-
         baseConfig.module.preLoaders.push({
           test: /\.json$/,
-          loader: 'json-loader'
+          loader: 'json-loader',
+          exclude: /config.json/,  //去除对config.json的重复编译
         });
-
+        baseConfig.module.loaders.push({
+          test: /\.(js|jsx)$/,
+          loader:'babel-loader',
+          
+          //以下，babel的解析把node_modules文件下的依赖包都排除了
+          // exclude: path.resolve(__dirname, 'node_modules'),
+          // exclude: /node_modules/,
+          
+          //为了使某些模块能被正常使用,要把相应模块的文件的解析加进去，所以补充如下：
+          include: [
+            path.resolve(__dirname, 'node_modules/fs-extra'),
+            path.resolve(__dirname, 'node_modules/universalify'),
+            path.resolve(__dirname, 'node_modules/nodemailer'),
+          ],
+        });
         if (this.env == 'prd') {
           baseConfig.plugins.push(
             new this.webpack.optimize.UglifyJsPlugin({
@@ -196,15 +212,31 @@ module.exports = {
             new this.webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(zh-cn|en-gb)$/)
           );
         }
+        // 添加以下配置
+        baseConfig.node = {
+          fs: 'empty',
+          child_process: 'empty',
+          net: 'empty',
+          tls: 'empty',
+          net: 'empty',
+          dns: 'empty',
+        };
         return baseConfig;
       }
     };
   },
-  server: {
+  serve: {
     // true/false，默认 false，效果相当于 ykit server --hot
     hot: true,
     // true/false，默认 false，开启后可在当前打开的页面提示打包错误
-    overlay: false
+    overlay: false,
+    proxy: {
+      // 配置API代理
+      '/api': {
+        target: 'http://localhost:3000/api',
+        changeOrigin: true
+      }
+    }
   },
   hooks: {},
   commands: []

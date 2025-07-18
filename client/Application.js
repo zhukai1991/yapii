@@ -7,7 +7,7 @@ import { Home, Group, Project, Follows, AddProject, Login, Share } from './conta
 import { Alert } from 'antd';
 import User from './containers/User/User.js';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+// import Footer from './components/Footer/Footer';
 import Loading from './components/Loading/Loading';
 import MyPopConfirm from './components/MyPopConfirm/MyPopConfirm';
 import { checkLoginState } from './reducer/modules/user';
@@ -111,7 +111,7 @@ export default class App extends Component {
       r = (
         <Router getUserConfirmation={this.showConfirm}>
           <div className="g-main">
-            <div className="router-main">
+            <div>
               {this.props.curUserRole === 'admin' && <Notify />}
               {alertContent()}
               {/* {this.props.loginState !== 1 ? <Header /> : null} */}
@@ -144,7 +144,7 @@ export default class App extends Component {
                 {/* <Route path="/statistic" component={statisticsPage} /> */}
               </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </Router>
       );

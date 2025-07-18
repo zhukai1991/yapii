@@ -4,14 +4,14 @@
   "description": "yapii",
   "main": "server/app.js",
   "scripts": {
-    "dev-copy-icon": "cp -r static/iconfont ./",
+    "dev-copy-icon": "cpy static/iconfont ./iconfont",
     "dev-server": " nodemon server/app.js dev -L",
     "install-server": " node server/install.js",
     "dev-client": "npm run dev-copy-icon && ykit s -p 4000",
     "dev": "npm run dev-server & npm run dev-client",
     "start": "nodemon server/app.js",
     "changelog": "conventional-changelog --config=changelog.js -p angular -i CHANGELOG.v2.md -s",
-    "build-client": "NODE_ENV=production ykit pack -m"
+    "build-client": "cross-env NODE_ENV=production ykit pack -m"
   },
   "scripts-info": {
     "start": "运行生产环境服务器",
@@ -78,7 +78,7 @@
     "safeify": "^5.0.5",
     "sha.js": "2.4.9",
     "sha1": "1.1.1",
-    "swagger-client": "^3.5.1",
+    "swagger-client": "3.5.1",
     "tslib": "1.8.0",
     "underscore": "1.8.3",
     "url": "0.11.0",
@@ -109,6 +109,8 @@
     "conventional-changelog-cli": "^2.1.1",
     "copy-webpack-plugin": "^4.0.1",
     "core-decorators": "^0.17.0",
+    "cpy-cli": "^3.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "2.0.0",
     "happypack": "^4.0.0-beta.5",
