@@ -116,7 +116,7 @@ export default class App extends Component {
               {alertContent()}
               {/* {this.props.loginState !== 1 ? <Header /> : null} */}
               <Header />
-              {/* <div className="router-container">
+              <div className="router-container">
                 {Object.keys(AppRoute).map(key => {
                   let item = AppRoute[key];
                   return key === 'login' ? (
@@ -131,8 +131,8 @@ export default class App extends Component {
                     />
                   );
                 })}
-              </div> */}
-              <div className="router-container">
+              </div>
+              {/* <div className="router-container">
                 <Route exact path="/" component={Home} />
                 <Route path="/share/:id" component={Share} />
                 <Route path="/group" component={requireAuthentication(Group)} />
@@ -140,9 +140,9 @@ export default class App extends Component {
                 <Route path="/user" component={requireAuthentication(User)} />
                 <Route path="/follow" component={requireAuthentication(Follows)} />
                 <Route path="/add-project" component={requireAuthentication(AddProject)} />
-                <Route path="/login" component={Login} />
+                <Route path="/login" component={Login} /> */}
                 {/* <Route path="/statistic" component={statisticsPage} /> */}
-              </div>
+              {/* </div> */}
             </div>
             {/* <Footer /> */}
           </div>

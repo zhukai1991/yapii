@@ -225,11 +225,16 @@ module.exports = {
       }
     };
   },
-  serve: {
+  devServer: {
+    host: '0.0.0.0',
     // true/false，默认 false，效果相当于 ykit server --hot
     hot: true,
     // true/false，默认 false，开启后可在当前打开的页面提示打包错误
     overlay: false,
+    contentBase: path.join(__dirname, 'static'),
+    publicPath: '/prd/',
+    historyApiFallback: true,
+    stats: 'minimal',
     proxy: {
       // 配置API代理
       '/api': {
@@ -237,6 +242,9 @@ module.exports = {
         changeOrigin: true
       }
     }
+  },
+  server: {
+    host: '0.0.0.0'
   },
   hooks: {},
   commands: []
