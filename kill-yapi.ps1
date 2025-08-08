@@ -8,16 +8,16 @@ $processes = netstat -ano | Select-String ":3000" | ForEach-Object {
 }
 
 if ($processes) {
-    foreach ($pid in $processes) {
-        Write-Host "Found process ID: $pid" -ForegroundColor Yellow
+    foreach ($processId in $processes) {
+        Write-Host "Found process ID: $processId" -ForegroundColor Yellow
         try {
-            $process = Get-Process -Id $pid -ErrorAction Stop
-            Write-Host "Killing process: $($process.ProcessName) (PID: $pid)" -ForegroundColor Cyan
-            Stop-Process -Id $pid -Force -ErrorAction Stop
-            Write-Host "Successfully killed process $pid" -ForegroundColor Green
+            $process = Get-Process -Id $processId -ErrorAction Stop
+            Write-Host "Killing process: $($process.ProcessName) (PID: $processId)" -ForegroundColor Cyan
+            Stop-Process -Id $processId -Force -ErrorAction Stop
+            Write-Host "Successfully killed process $processId" -ForegroundColor Green
         }
         catch {
-            Write-Host "Cannot kill process $pid`: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host "Cannot kill process $processId`: $($_.Exception.Message)" -ForegroundColor Red
             Write-Host "Please try running this script as Administrator" -ForegroundColor Red
         }
     }

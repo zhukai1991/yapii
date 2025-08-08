@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 echo 正在查找并终止 YApi 进程...
 
 REM 查找占用 3000 端口的进程
